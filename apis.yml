@@ -3,7 +3,10 @@ url: https://raw.githubusercontent.com/api-evangelist/pika-labs/refs/heads/main/
 name: Pika Labs
 x-type: company
 description: >-
-  Pika Labs is an AI video generation platform offering text-to-video, image-to-video, and video editing capabilities.
+  Pika Labs is an AI video generation platform offering text-to-video, image-to-video, and
+  video editing capabilities. As of May 2026 Pika does not publish a first-party REST API
+  on its main domain; production API access is provided through partner aggregators (notably
+  fal.ai) which host hosted endpoints for Pika models.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - AI
@@ -14,10 +17,29 @@ tags:
 created: '2026-05-08'
 modified: '2026-05-08'
 specificationVersion: '0.19'
-apis: []
+apis:
+  - aid: pika-labs:fal
+    name: Pika via fal.ai
+    description: >-
+      Pika's video generation models are exposed through the fal.ai inference platform. Use
+      fal.ai's standard REST submission + polling API to access Pika models.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://fal.ai/models?keywords=pika
+    baseURL: https://queue.fal.run
+    tags:
+      - Video Generation
+      - Aggregator
+      - fal.ai
+    properties:
+      - type: Documentation
+        url: https://fal.ai/models?keywords=pika
+      - type: ProviderWebsite
+        url: https://pika.art/
 common:
   - type: Website
     url: https://pika.art/
+  - type: Documentation
+    url: https://fal.ai/models?keywords=pika
   - type: Plans
     url: plans/pika-labs-plans-pricing.yml
   - type: RateLimits

@@ -5,7 +5,7 @@ provider: Pika Labs
 providerId: pika-labs
 created: '2026-05-08'
 modified: '2026-05-08'
-reconciled: false
+reconciled: partial
 tags:
 - AI
 - Video Generation
@@ -15,21 +15,26 @@ tags:
 - Rate Limiting
 - Quotas
 - Throttling
-description: Placeholder rate-limit artifact for Pika Labs. Replace with real limits once researched.
-notes: Initial scaffold — limits have not yet been reconciled.
+description: >-
+  No first-party Pika API exists, so rate limits depend on the chosen aggregator. fal.ai
+  enforces account-tier RPS and concurrent job limits documented on its platform.
+notes: For production integrations, consult fal.ai documentation for the limits applicable to the selected Pika model.
 sources:
+- https://fal.ai/
 - https://pika.art/
 responseCodes:
   throttled: 429
 limits:
-- name: Default
+- name: Aggregator Limits (fal.ai)
   scope: account
-  metric: varies
-  limit: see provider documentation
-  notes: Pending reconciliation.
+  metric: requests
+  limit: see fal.ai account dashboard
+  notes: Rate limits are enforced by fal.ai when using Pika models through their queue API.
 policies:
 - name: Backoff Strategy
   description: Clients should implement exponential backoff with jitter and honor any Retry-After header.
+- name: Aggregator Choice
+  description: Pick a Pika-supporting aggregator (fal.ai) appropriate for required throughput and rate limits.
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
