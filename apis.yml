@@ -1,0 +1,29 @@
+aid: pika-labs
+url: https://raw.githubusercontent.com/api-evangelist/pika-labs/refs/heads/main/apis.yml
+name: Pika Labs
+x-type: company
+description: >-
+  Pika Labs is an AI video generation platform offering text-to-video, image-to-video, and video editing capabilities.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - AI
+  - Video Generation
+  - Text-to-Video
+  - Multimodal
+  - Generative
+created: '2026-05-08'
+modified: '2026-05-08'
+specificationVersion: '0.19'
+apis: []
+common:
+  - type: Website
+    url: https://pika.art/
+  - type: Plans
+    url: plans/pika-labs-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/pika-labs-rate-limits.yml
+  - type: FinOps
+    url: finops/pika-labs-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
