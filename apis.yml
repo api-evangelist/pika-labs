@@ -1,7 +1,7 @@
 aid: pika-labs
 url: https://raw.githubusercontent.com/api-evangelist/pika-labs/refs/heads/main/apis.yml
 name: Pika Labs
-x-type: company
+kind: company
 description: >-
   Pika Labs is an AI video generation platform offering text-to-video, image-to-video, and
   video editing capabilities. As of May 2026 Pika does not publish a first-party REST API
