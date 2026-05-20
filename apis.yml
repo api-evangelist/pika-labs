@@ -36,6 +36,10 @@ apis:
       - type: ProviderWebsite
         url: https://pika.art/
 common:
+  - type: GitHubOrganization
+    url: https://github.com/Pika-Labs
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/pika-labs
   - type: Website
     url: https://pika.art/
   - type: Documentation
