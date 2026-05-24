@@ -1,0 +1,225 @@
+openapi: 3.1.0
+info:
+  title: Pika Labs via fal.ai Queue API
+  description: |
+    Pika Labs does not publish a first-party REST API on its main domain.
+    Production REST access to Pika's video generation models is provided
+    through the fal.ai inference platform's standard Queue API.
+
+    Submit an inference request with POST /{model_id}, then poll
+    GET /{model_id}/requests/{request_id}/status (or stream it) until the
+    request completes, and fetch the result with
+    GET /{model_id}/requests/{request_id}. Authentication is a fal.ai API
+    key sent as `Authorization: Key $FAL_KEY`.
+
+    The {model_id} path component identifies a specific Pika model on fal.ai
+    (for example `fal-ai/pika`). Only the generic Queue API surface is
+    modeled here; see the fal.ai documentation under externalDocs for
+    model-specific input and output schemas.
+  version: "1.0.0"
+  contact:
+    name: fal.ai documentation
+    url: https://fal.ai/docs/model-endpoints/queue
+  license:
+    name: fal.ai Proprietary
+externalDocs:
+  description: fal.ai Queue API documentation
+  url: https://fal.ai/docs/model-endpoints/queue
+servers:
+  - url: https://queue.fal.run
+    description: fal.ai inference queue base URL.
+tags:
+  - name: Submission
+    description: Submit inference requests.
+  - name: Status
+    description: Inspect request status.
+  - name: Result
+    description: Retrieve the result of a completed request.
+  - name: Cancel
+    description: Cancel an in-flight request.
+security:
+  - falKey: []
+paths:
+  /{model_id}:
+    parameters:
+      - in: path
+        name: model_id
+        required: true
+        schema:
+          type: string
+        description: |
+          fal.ai model identifier (e.g. `fal-ai/pika`).
+    post:
+      tags: [Submission]
+      summary: Submit an inference request
+      description: |
+        Submits a generation request for the specified Pika model on fal.ai.
+        Returns a request identifier along with URLs to check status, fetch
+        the result, and cancel the request.
+      operationId: submitRequest
+      parameters:
+        - in: query
+          name: fal_webhook
+          schema:
+            type: string
+            format: uri
+          description: Optional webhook URL invoked when the request completes.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Model-specific input payload.
+              additionalProperties: true
+      responses:
+        "200":
+          description: Request accepted into the queue.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QueueSubmission"
+
+  /{model_id}/requests/{request_id}/status:
+    parameters:
+      - in: path
+        name: model_id
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: request_id
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Status]
+      summary: Check request status
+      description: Returns the current status of a previously submitted request.
+      operationId: getRequestStatus
+      parameters:
+        - in: query
+          name: logs
+          schema:
+            type: integer
+            enum: [0, 1]
+          description: Include runner logs when set to 1.
+      responses:
+        "200":
+          description: Current request status.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QueueStatus"
+
+  /{model_id}/requests/{request_id}/status/stream:
+    parameters:
+      - in: path
+        name: model_id
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: request_id
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Status]
+      summary: Stream request status
+      description: Server-sent event stream of request status updates.
+      operationId: streamRequestStatus
+      responses:
+        "200":
+          description: Stream of status events.
+          content:
+            text/event-stream:
+              schema:
+                type: string
+
+  /{model_id}/requests/{request_id}:
+    parameters:
+      - in: path
+        name: model_id
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: request_id
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Result]
+      summary: Get request result
+      description: |
+        Returns the output of a completed inference request. The shape of
+        the output is model-specific.
+      operationId: getRequestResult
+      responses:
+        "200":
+          description: Inference result payload.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+
+  /{model_id}/requests/{request_id}/cancel:
+    parameters:
+      - in: path
+        name: model_id
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: request_id
+        required: true
+        schema:
+          type: string
+    put:
+      tags: [Cancel]
+      summary: Cancel an in-flight request
+      operationId: cancelRequest
+      responses:
+        "200":
+          description: Request cancellation acknowledged.
+
+components:
+  securitySchemes:
+    falKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: |
+        fal.ai API key sent as `Authorization: Key $FAL_KEY`.
+  schemas:
+    QueueSubmission:
+      type: object
+      properties:
+        request_id:
+          type: string
+        response_url:
+          type: string
+          format: uri
+        status_url:
+          type: string
+          format: uri
+        cancel_url:
+          type: string
+          format: uri
+        queue_position:
+          type: integer
+    QueueStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [IN_QUEUE, IN_PROGRESS, COMPLETED, FAILED]
+        queue_position:
+          type: integer
+        logs:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
