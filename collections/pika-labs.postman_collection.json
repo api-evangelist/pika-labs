@@ -1,0 +1,664 @@
+{
+  "item": [
+    {
+      "id": "a1e4e707-f448-4e48-bc7b-73560396c364",
+      "name": "Submission",
+      "description": {
+        "content": "Submit inference requests.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "33ac7ae6-40ba-48ce-98de-807104d7dccd",
+          "name": "Submit an inference request",
+          "request": {
+            "name": "Submit an inference request",
+            "description": {
+              "content": "Submits a generation request for the specified Pika model on fal.ai.\nReturns a request identifier along with URLs to check status, fetch\nthe result, and cancel the request.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":model_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fal_webhook",
+                  "value": "<uri>",
+                  "description": "Optional webhook URL invoked when the request completes."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "model_id",
+                  "description": "(Required) fal.ai model identifier (e.g. `fal-ai/pika`).\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": false,\n  \"key_1\": false,\n  \"key_2\": 351,\n  \"key_3\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4a55410e-0c98-426d-90c9-9758d7dd475e",
+              "name": "Request accepted into the queue.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":model_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fal_webhook",
+                      "value": "<uri>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_id",
+                      "description": "(Required) fal.ai model identifier (e.g. `fal-ai/pika`).\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 9092\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"response_url\": \"http://xZBWRyAoBOwhFIMWyayw.ylmldOpWf-pn1C-TT8.eTGoNyNck56UUraU1S,MmsNkE-\",\n  \"status_url\": \"https://saQFKV.bbvpQKUbB9-fDXlJvAtUhYkhX\",\n  \"cancel_url\": \"https://nNXZjpEVWlIUKMyAN.uwatIkYEO+S.2.EyQH6JBgm7+NR.7z.-efrVTbyPrtKJo92YaVaB8cd-p6+kPyd\",\n  \"queue_position\": 5239\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "bdffdc64-59d4-48a9-8594-542fec082209",
+      "name": "Status",
+      "description": {
+        "content": "Inspect request status.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "49d3af63-0d8a-42b8-a364-9bdafff3a108",
+          "name": "Check request status",
+          "request": {
+            "name": "Check request status",
+            "description": {
+              "content": "Returns the current status of a previously submitted request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":model_id",
+                "requests",
+                ":request_id",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "logs",
+                  "value": "<integer>",
+                  "description": "Include runner logs when set to 1."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "model_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "request_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c0dbaf1b-6b5e-4ac9-85e9-10f8e609f568",
+              "name": "Current request status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":model_id",
+                    "requests",
+                    ":request_id",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "logs",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "request_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"IN_QUEUE\",\n  \"queue_position\": 168,\n  \"logs\": [\n    {\n      \"key_0\": 5859\n    },\n    {\n      \"key_0\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "92b8ce46-97ed-4fa4-848d-07a93c3fab12",
+          "name": "Stream request status",
+          "request": {
+            "name": "Stream request status",
+            "description": {
+              "content": "Server-sent event stream of request status updates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":model_id",
+                "requests",
+                ":request_id",
+                "status",
+                "stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "model_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "request_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/event-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cf634cd2-5ce1-4a41-914e-cc3d5dc50bda",
+              "name": "Stream of status events.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":model_id",
+                    "requests",
+                    ":request_id",
+                    "status",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "request_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/event-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/event-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "230194ab-5516-4a1f-aa48-602f5ad80fe3",
+      "name": "Result",
+      "description": {
+        "content": "Retrieve the result of a completed request.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "43e27ffe-4070-4c09-bb80-733b90e2eb95",
+          "name": "Get request result",
+          "request": {
+            "name": "Get request result",
+            "description": {
+              "content": "Returns the output of a completed inference request. The shape of\nthe output is model-specific.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":model_id",
+                "requests",
+                ":request_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "model_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "request_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2730a08d-123f-4caf-b167-5492a2f1116b",
+              "name": "Inference result payload.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":model_id",
+                    "requests",
+                    ":request_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "request_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 3740,\n  \"key_1\": \"string\",\n  \"key_2\": 5748\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "663beb11-76ad-450c-bca5-b15a34eb621d",
+      "name": "Cancel",
+      "description": {
+        "content": "Cancel an in-flight request.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f86ffa3b-4995-40d0-96ba-3cc326cf8c7f",
+          "name": "Cancel an in-flight request",
+          "request": {
+            "name": "Cancel an in-flight request",
+            "description": {},
+            "url": {
+              "path": [
+                ":model_id",
+                "requests",
+                ":request_id",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "model_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "request_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "68ae92d8-b629-45ea-b53e-64de32e91a8d",
+              "name": "Request cancellation acknowledged.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":model_id",
+                    "requests",
+                    ":request_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "request_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://queue.fal.run",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d1aefe31-44ca-485d-a16e-5f21262f62b2",
+    "name": "Pika Labs via fal.ai Queue API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Pika Labs does not publish a first-party REST API on its main domain.\nProduction REST access to Pika's video generation models is provided\nthrough the fal.ai inference platform's standard Queue API.\n\nSubmit an inference request with POST /{model_id}, then poll\nGET /{model_id}/requests/{request_id}/status (or stream it) until the\nrequest completes, and fetch the result with\nGET /{model_id}/requests/{request_id}. Authentication is a fal.ai API\nkey sent as `Authorization: Key $FAL_KEY`.\n\nThe {model_id} path component identifies a specific Pika model on fal.ai\n(for example `fal-ai/pika`). Only the generic Queue API surface is\nmodeled here; see the fal.ai documentation under externalDocs for\nmodel-specific input and output schemas.\n\n\nContact Support:\n Name: fal.ai documentation",
+      "type": "text/plain"
+    }
+  }
+}

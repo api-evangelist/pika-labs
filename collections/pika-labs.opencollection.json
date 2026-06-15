@@ -1,0 +1,177 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pika Labs via fal.ai Queue API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Submission",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit an inference request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://queue.fal.run/:model_id",
+            "params": [
+              {
+                "name": "model_id",
+                "value": "",
+                "type": "path",
+                "description": "fal.ai model identifier (e.g. `fal-ai/pika`).\n"
+              },
+              {
+                "name": "fal_webhook",
+                "value": "",
+                "type": "query",
+                "description": "Optional webhook URL invoked when the request completes."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a generation request for the specified Pika model on fal.ai.\nReturns a request identifier along with URLs to check status, fetch\nthe result, and cancel the request.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check request status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://queue.fal.run/:model_id/requests/:request_id/status",
+            "params": [
+              {
+                "name": "model_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "logs",
+                "value": "",
+                "type": "query",
+                "description": "Include runner logs when set to 1."
+              }
+            ]
+          },
+          "docs": "Returns the current status of a previously submitted request."
+        },
+        {
+          "info": {
+            "name": "Stream request status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://queue.fal.run/:model_id/requests/:request_id/status/stream",
+            "params": [
+              {
+                "name": "model_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Server-sent event stream of request status updates."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Result",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get request result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://queue.fal.run/:model_id/requests/:request_id",
+            "params": [
+              {
+                "name": "model_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the output of a completed inference request. The shape of\nthe output is model-specific.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Cancel",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cancel an in-flight request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://queue.fal.run/:model_id/requests/:request_id/cancel",
+            "params": [
+              {
+                "name": "model_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel an in-flight request"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
