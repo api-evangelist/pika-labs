@@ -7,7 +7,7 @@ description: >-
   video editing capabilities. As of May 2026 Pika does not publish a first-party REST API
   on its main domain; production API access is provided through partner aggregators (notably
   fal.ai) which host hosted endpoints for Pika models.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - AI
   - Video Generation
@@ -23,7 +23,7 @@ apis:
     description: >-
       Pika's video generation models are exposed through the fal.ai inference platform. Use
       fal.ai's standard REST submission + polling API to access Pika models.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://fal.ai/models?keywords=pika
     baseURL: https://queue.fal.run
     tags:
