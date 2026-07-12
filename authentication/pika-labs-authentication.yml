@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/pika-labs-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: falKey
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: 'fal.ai API key sent as `Authorization: Key $FAL_KEY`.'
+  sources:
+  - openapi/pika-labs-openapi.yml

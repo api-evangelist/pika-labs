@@ -36,6 +36,10 @@ apis:
       - type: ProviderWebsite
         url: https://pika.art/
 common:
+  - type: DomainSecurity
+    url: security/pika-labs-domain-security.yml
+  - type: Authentication
+    url: authentication/pika-labs-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/Pika-Labs
   - type: LinkedIn
