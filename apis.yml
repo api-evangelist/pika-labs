@@ -36,6 +36,8 @@ apis:
       - type: ProviderWebsite
         url: https://pika.art/
 common:
+  - type: AgenticAccess
+    url: agentic-access/pika-labs-agentic-access.yml
   - type: DomainSecurity
     url: security/pika-labs-domain-security.yml
   - type: Authentication
