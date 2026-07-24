@@ -1,0 +1,134 @@
+openapi: 3.1.0
+info:
+  title: Pika Labs via fal.ai Queue Cancel Status API
+  description: 'Pika Labs does not publish a first-party REST API on its main domain.
+
+    Production REST access to Pika''s video generation models is provided
+
+    through the fal.ai inference platform''s standard Queue API.
+
+
+    Submit an inference request with POST /{model_id}, then poll
+
+    GET /{model_id}/requests/{request_id}/status (or stream it) until the
+
+    request completes, and fetch the result with
+
+    GET /{model_id}/requests/{request_id}. Authentication is a fal.ai API
+
+    key sent as `Authorization: Key $FAL_KEY`.
+
+
+    The {model_id} path component identifies a specific Pika model on fal.ai
+
+    (for example `fal-ai/pika`). Only the generic Queue API surface is
+
+    modeled here; see the fal.ai documentation under externalDocs for
+
+    model-specific input and output schemas.
+
+    '
+  version: 1.0.0
+  contact:
+    name: fal.ai documentation
+    url: https://fal.ai/docs/model-endpoints/queue
+  license:
+    name: fal.ai Proprietary
+servers:
+- url: https://queue.fal.run
+  description: fal.ai inference queue base URL.
+security:
+- falKey: []
+tags:
+- name: Status
+  description: Inspect request status.
+paths:
+  /{model_id}/requests/{request_id}/status:
+    parameters:
+    - in: path
+      name: model_id
+      required: true
+      schema:
+        type: string
+    - in: path
+      name: request_id
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Status
+      summary: Check request status
+      description: Returns the current status of a previously submitted request.
+      operationId: getRequestStatus
+      parameters:
+      - in: query
+        name: logs
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+        description: Include runner logs when set to 1.
+      responses:
+        '200':
+          description: Current request status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueueStatus'
+  /{model_id}/requests/{request_id}/status/stream:
+    parameters:
+    - in: path
+      name: model_id
+      required: true
+      schema:
+        type: string
+    - in: path
+      name: request_id
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Status
+      summary: Stream request status
+      description: Server-sent event stream of request status updates.
+      operationId: streamRequestStatus
+      responses:
+        '200':
+          description: Stream of status events.
+          content:
+            text/event-stream:
+              schema:
+                type: string
+components:
+  schemas:
+    QueueStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - IN_QUEUE
+          - IN_PROGRESS
+          - COMPLETED
+          - FAILED
+        queue_position:
+          type: integer
+        logs:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+  securitySchemes:
+    falKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'fal.ai API key sent as `Authorization: Key $FAL_KEY`.
+
+        '
+externalDocs:
+  description: fal.ai Queue API documentation
+  url: https://fal.ai/docs/model-endpoints/queue

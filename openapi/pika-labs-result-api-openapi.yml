@@ -1,0 +1,87 @@
+openapi: 3.1.0
+info:
+  title: Pika Labs via fal.ai Queue Cancel Result API
+  description: 'Pika Labs does not publish a first-party REST API on its main domain.
+
+    Production REST access to Pika''s video generation models is provided
+
+    through the fal.ai inference platform''s standard Queue API.
+
+
+    Submit an inference request with POST /{model_id}, then poll
+
+    GET /{model_id}/requests/{request_id}/status (or stream it) until the
+
+    request completes, and fetch the result with
+
+    GET /{model_id}/requests/{request_id}. Authentication is a fal.ai API
+
+    key sent as `Authorization: Key $FAL_KEY`.
+
+
+    The {model_id} path component identifies a specific Pika model on fal.ai
+
+    (for example `fal-ai/pika`). Only the generic Queue API surface is
+
+    modeled here; see the fal.ai documentation under externalDocs for
+
+    model-specific input and output schemas.
+
+    '
+  version: 1.0.0
+  contact:
+    name: fal.ai documentation
+    url: https://fal.ai/docs/model-endpoints/queue
+  license:
+    name: fal.ai Proprietary
+servers:
+- url: https://queue.fal.run
+  description: fal.ai inference queue base URL.
+security:
+- falKey: []
+tags:
+- name: Result
+  description: Retrieve the result of a completed request.
+paths:
+  /{model_id}/requests/{request_id}:
+    parameters:
+    - in: path
+      name: model_id
+      required: true
+      schema:
+        type: string
+    - in: path
+      name: request_id
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Result
+      summary: Get request result
+      description: 'Returns the output of a completed inference request. The shape of
+
+        the output is model-specific.
+
+        '
+      operationId: getRequestResult
+      responses:
+        '200':
+          description: Inference result payload.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+components:
+  securitySchemes:
+    falKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'fal.ai API key sent as `Authorization: Key $FAL_KEY`.
+
+        '
+externalDocs:
+  description: fal.ai Queue API documentation
+  url: https://fal.ai/docs/model-endpoints/queue

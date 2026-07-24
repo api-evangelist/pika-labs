@@ -1,0 +1,118 @@
+openapi: 3.1.0
+info:
+  title: Pika Labs via fal.ai Queue Cancel Submission API
+  description: 'Pika Labs does not publish a first-party REST API on its main domain.
+
+    Production REST access to Pika''s video generation models is provided
+
+    through the fal.ai inference platform''s standard Queue API.
+
+
+    Submit an inference request with POST /{model_id}, then poll
+
+    GET /{model_id}/requests/{request_id}/status (or stream it) until the
+
+    request completes, and fetch the result with
+
+    GET /{model_id}/requests/{request_id}. Authentication is a fal.ai API
+
+    key sent as `Authorization: Key $FAL_KEY`.
+
+
+    The {model_id} path component identifies a specific Pika model on fal.ai
+
+    (for example `fal-ai/pika`). Only the generic Queue API surface is
+
+    modeled here; see the fal.ai documentation under externalDocs for
+
+    model-specific input and output schemas.
+
+    '
+  version: 1.0.0
+  contact:
+    name: fal.ai documentation
+    url: https://fal.ai/docs/model-endpoints/queue
+  license:
+    name: fal.ai Proprietary
+servers:
+- url: https://queue.fal.run
+  description: fal.ai inference queue base URL.
+security:
+- falKey: []
+tags:
+- name: Submission
+  description: Submit inference requests.
+paths:
+  /{model_id}:
+    parameters:
+    - in: path
+      name: model_id
+      required: true
+      schema:
+        type: string
+      description: 'fal.ai model identifier (e.g. `fal-ai/pika`).
+
+        '
+    post:
+      tags:
+      - Submission
+      summary: Submit an inference request
+      description: 'Submits a generation request for the specified Pika model on fal.ai.
+
+        Returns a request identifier along with URLs to check status, fetch
+
+        the result, and cancel the request.
+
+        '
+      operationId: submitRequest
+      parameters:
+      - in: query
+        name: fal_webhook
+        schema:
+          type: string
+          format: uri
+        description: Optional webhook URL invoked when the request completes.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Model-specific input payload.
+              additionalProperties: true
+      responses:
+        '200':
+          description: Request accepted into the queue.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueueSubmission'
+components:
+  schemas:
+    QueueSubmission:
+      type: object
+      properties:
+        request_id:
+          type: string
+        response_url:
+          type: string
+          format: uri
+        status_url:
+          type: string
+          format: uri
+        cancel_url:
+          type: string
+          format: uri
+        queue_position:
+          type: integer
+  securitySchemes:
+    falKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'fal.ai API key sent as `Authorization: Key $FAL_KEY`.
+
+        '
+externalDocs:
+  description: fal.ai Queue API documentation
+  url: https://fal.ai/docs/model-endpoints/queue
