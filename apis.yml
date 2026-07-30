@@ -7,7 +7,20 @@ description: >-
   video editing capabilities. As of May 2026 Pika does not publish a first-party REST API
   on its main domain; production API access is provided through partner aggregators (notably
   fal.ai) which host hosted endpoints for Pika models.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/pika-labs.png
 tags:
   - AI
   - Video Generation
@@ -18,23 +31,63 @@ created: '2026-05-08'
 modified: '2026-05-08'
 specificationVersion: '0.19'
 apis:
-  - aid: pika-labs:fal
-    name: Pika via fal.ai
-    description: >-
-      Pika's video generation models are exposed through the fal.ai inference platform. Use
-      fal.ai's standard REST submission + polling API to access Pika models.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://fal.ai/models?keywords=pika
-    baseURL: https://queue.fal.run
-    tags:
-      - Video Generation
-      - Aggregator
-      - fal.ai
-    properties:
-      - type: Documentation
-        url: https://fal.ai/models?keywords=pika
-      - type: ProviderWebsite
-        url: https://pika.art/
+- aid: pika-labs:fal
+  name: Pika via fal.ai
+  description: >-
+    Pika's video generation models are exposed through the fal.ai inference platform. Use fal.ai's standard
+    REST submission + polling API to access Pika models.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://fal.ai/models?keywords=pika
+  baseURL: https://queue.fal.run
+  tags:
+  - Video Generation
+  - Aggregator
+  - fal.ai
+  properties:
+  - type: Documentation
+    url: https://fal.ai/models?keywords=pika
+  - type: ProviderWebsite
+    url: https://pika.art/
+- aid: pika-labs:pika-labs-cancel-api
+  name: Pika Labs Cancel API
+  description: Cancel an in-flight request.
+  humanURL: https://fal.ai/models?keywords=pika
+  baseURL: https://queue.fal.run
+  tags:
+  - Cancel
+  properties:
+  - type: OpenAPI
+    url: openapi/pika-labs-cancel-api-openapi.yml
+- aid: pika-labs:pika-labs-result-api
+  name: Pika Labs Result API
+  description: Retrieve the result of a completed request.
+  humanURL: https://fal.ai/models?keywords=pika
+  baseURL: https://queue.fal.run
+  tags:
+  - Result
+  properties:
+  - type: OpenAPI
+    url: openapi/pika-labs-result-api-openapi.yml
+- aid: pika-labs:pika-labs-status-api
+  name: Pika Labs Status API
+  description: Inspect request status.
+  humanURL: https://fal.ai/models?keywords=pika
+  baseURL: https://queue.fal.run
+  tags:
+  - Status
+  properties:
+  - type: OpenAPI
+    url: openapi/pika-labs-status-api-openapi.yml
+- aid: pika-labs:pika-labs-submission-api
+  name: Pika Labs Submission API
+  description: Submit inference requests.
+  humanURL: https://fal.ai/models?keywords=pika
+  baseURL: https://queue.fal.run
+  tags:
+  - Submission
+  properties:
+  - type: OpenAPI
+    url: openapi/pika-labs-submission-api-openapi.yml
 common:
   - type: AgenticAccess
     url: agentic-access/pika-labs-agentic-access.yml
