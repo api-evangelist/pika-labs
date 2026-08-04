@@ -1,0 +1,20 @@
+{
+  "provider": "pika-labs",
+  "sources": [
+    "pika-labs-cancel-api-openapi.yml",
+    "pika-labs-result-api-openapi.yml",
+    "pika-labs-status-api-openapi.yml",
+    "pika-labs-submission-api-openapi.yml"
+  ],
+  "outputs": [
+    "pika-labs-cancel-api-openapi.yml",
+    "pika-labs-result-api-openapi.yml",
+    "pika-labs-status-api-openapi.yml",
+    "pika-labs-submission-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
