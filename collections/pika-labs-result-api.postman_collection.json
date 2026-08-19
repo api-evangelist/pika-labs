@@ -1,0 +1,161 @@
+{
+  "item": [
+    {
+      "id": "f8d1ab58-6772-4959-9d42-eb422b766d69",
+      "name": "Result",
+      "description": {
+        "content": "Retrieve the result of a completed request.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d3eb8b26-72df-4259-9e02-12d5a7a16e54",
+          "name": "Get request result",
+          "request": {
+            "name": "Get request result",
+            "description": {
+              "content": "Returns the output of a completed inference request. The shape of\nthe output is model-specific.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":model_id",
+                "requests",
+                ":request_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "model_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "request_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e0f186b6-5689-4833-ba86-c02635210e74",
+              "name": "Inference result payload.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":model_id",
+                    "requests",
+                    ":request_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "request_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://queue.fal.run",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e7aae7c8-381d-4649-94fb-d07ec8792af1",
+    "name": "Pika Labs via fal.ai Queue Cancel Result API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Pika Labs does not publish a first-party REST API on its main domain.\nProduction REST access to Pika's video generation models is provided\nthrough the fal.ai inference platform's standard Queue API.\n\nSubmit an inference request with POST /{model_id}, then poll\nGET /{model_id}/requests/{request_id}/status (or stream it) until the\nrequest completes, and fetch the result with\nGET /{model_id}/requests/{request_id}. Authentication is a fal.ai API\nkey sent as `Authorization: Key $FAL_KEY`.\n\nThe {model_id} path component identifies a specific Pika model on fal.ai\n(for example `fal-ai/pika`). Only the generic Queue API surface is\nmodeled here; see the fal.ai documentation under externalDocs for\nmodel-specific input and output schemas.\n\n\nContact Support:\n Name: fal.ai documentation",
+      "type": "text/plain"
+    }
+  }
+}

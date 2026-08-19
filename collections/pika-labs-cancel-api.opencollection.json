@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pika Labs via fal.ai Queue Cancel API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cancel",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cancel an in-flight request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://queue.fal.run/:model_id/requests/:request_id/cancel",
+            "params": [
+              {
+                "name": "model_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel an in-flight request"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pika Labs via fal.ai Queue Cancel Status API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check request status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://queue.fal.run/:model_id/requests/:request_id/status",
+            "params": [
+              {
+                "name": "model_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "logs",
+                "value": "",
+                "type": "query",
+                "description": "Include runner logs when set to 1."
+              }
+            ]
+          },
+          "docs": "Returns the current status of a previously submitted request."
+        },
+        {
+          "info": {
+            "name": "Stream request status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://queue.fal.run/:model_id/requests/:request_id/status/stream",
+            "params": [
+              {
+                "name": "model_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Server-sent event stream of request status updates."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

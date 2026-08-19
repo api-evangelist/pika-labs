@@ -1,0 +1,150 @@
+{
+  "item": [
+    {
+      "id": "adb93427-41bb-467f-9ac8-296fddb988bb",
+      "name": "Cancel",
+      "description": {
+        "content": "Cancel an in-flight request.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d2abfe90-3bd4-4a4f-aaee-4008cc7b27cb",
+          "name": "Cancel an in-flight request",
+          "request": {
+            "name": "Cancel an in-flight request",
+            "description": {},
+            "url": {
+              "path": [
+                ":model_id",
+                "requests",
+                ":request_id",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "model_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "request_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b95e780d-38c9-402e-b9f0-39969f19ef35",
+              "name": "Request cancellation acknowledged.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":model_id",
+                    "requests",
+                    ":request_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "request_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://queue.fal.run",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5b3125a2-ed5f-4dd6-af0c-445ce2118996",
+    "name": "Pika Labs via fal.ai Queue Cancel API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Pika Labs does not publish a first-party REST API on its main domain.\nProduction REST access to Pika's video generation models is provided\nthrough the fal.ai inference platform's standard Queue API.\n\nSubmit an inference request with POST /{model_id}, then poll\nGET /{model_id}/requests/{request_id}/status (or stream it) until the\nrequest completes, and fetch the result with\nGET /{model_id}/requests/{request_id}. Authentication is a fal.ai API\nkey sent as `Authorization: Key $FAL_KEY`.\n\nThe {model_id} path component identifies a specific Pika model on fal.ai\n(for example `fal-ai/pika`). Only the generic Queue API surface is\nmodeled here; see the fal.ai documentation under externalDocs for\nmodel-specific input and output schemas.\n\n\nContact Support:\n Name: fal.ai documentation",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,176 @@
+{
+  "item": [
+    {
+      "id": "eabd5ce5-1d44-463f-a510-d18af496ded1",
+      "name": "Submission",
+      "description": {
+        "content": "Submit inference requests.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ad52189e-4c31-4c7d-b06d-4bab3ede2ccc",
+          "name": "Submit an inference request",
+          "request": {
+            "name": "Submit an inference request",
+            "description": {
+              "content": "Submits a generation request for the specified Pika model on fal.ai.\nReturns a request identifier along with URLs to check status, fetch\nthe result, and cancel the request.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":model_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fal_webhook",
+                  "value": "<uri>",
+                  "description": "Optional webhook URL invoked when the request completes."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "model_id",
+                  "description": "(Required) fal.ai model identifier (e.g. `fal-ai/pika`).\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": \"string\",\n  \"key_1\": 8386.109039153187,\n  \"key_2\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7525f2c6-9ef6-4e5a-9773-aa7f2420fa8b",
+              "name": "Request accepted into the queue.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":model_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fal_webhook",
+                      "value": "<uri>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model_id",
+                      "description": "(Required) fal.ai model identifier (e.g. `fal-ai/pika`).\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 3273.1701910476486,\n  \"key_1\": 1143,\n  \"key_2\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"response_url\": \"http://DogWdcOMT.sfonLu,kLFK.5jvp34lT4lFU8FG25Wp4KGwfNitOfyjsabQePNdKw1rH17zTZ3Z\",\n  \"status_url\": \"http://viEzmHr.eeKaPifhhykaeLQUvPR7vci9.RVInBwzffdtIaI-NG-zS0xaT0yOrgGo5NvPOt9AqBmz\",\n  \"cancel_url\": \"http://PTqwejgccTDDTHxS.mzhT1tC7zWXbaHVzb7pudXTRhmpMWPD.9idHv6Wai.\",\n  \"queue_position\": 3481\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://queue.fal.run",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f071c39a-78a9-479c-aad7-db9e8bb0bb91",
+    "name": "Pika Labs via fal.ai Queue Cancel Submission API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Pika Labs does not publish a first-party REST API on its main domain.\nProduction REST access to Pika's video generation models is provided\nthrough the fal.ai inference platform's standard Queue API.\n\nSubmit an inference request with POST /{model_id}, then poll\nGET /{model_id}/requests/{request_id}/status (or stream it) until the\nrequest completes, and fetch the result with\nGET /{model_id}/requests/{request_id}. Authentication is a fal.ai API\nkey sent as `Authorization: Key $FAL_KEY`.\n\nThe {model_id} path component identifies a specific Pika model on fal.ai\n(for example `fal-ai/pika`). Only the generic Queue API surface is\nmodeled here; see the fal.ai documentation under externalDocs for\nmodel-specific input and output schemas.\n\n\nContact Support:\n Name: fal.ai documentation",
+      "type": "text/plain"
+    }
+  }
+}

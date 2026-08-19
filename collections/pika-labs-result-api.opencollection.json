@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pika Labs via fal.ai Queue Cancel Result API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Result",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get request result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://queue.fal.run/:model_id/requests/:request_id",
+            "params": [
+              {
+                "name": "model_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the output of a completed inference request. The shape of\nthe output is model-specific.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
