@@ -7,6 +7,18 @@ description: >-
   video editing capabilities. As of May 2026 Pika does not publish a first-party REST API
   on its main domain; production API access is provided through partner aggregators (notably
   fal.ai) which host hosted endpoints for Pika models.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
