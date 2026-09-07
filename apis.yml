@@ -112,6 +112,16 @@ apis:
   - type: OpenAPI
     url: openapi/pika-labs-submission-api-openapi.yml
 common:
+  - type: Blog
+    url: https://pika.art/blog
+  - type: Pricing
+    url: https://pika.art/pricing
+  - type: X
+    url: https://x.com/pika_labs
+  - type: Vocabulary
+    url: vocabulary/pika-labs-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/pika-labs-context.jsonld
   - type: AgenticAccess
     url: agentic-access/pika-labs-agentic-access.yml
   - type: DomainSecurity
