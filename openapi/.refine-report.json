@@ -1,10 +1,7 @@
 {
   "provider": "pika-labs",
   "sources": [
-    "pika-labs-cancel-api-openapi.yml",
-    "pika-labs-result-api-openapi.yml",
-    "pika-labs-status-api-openapi.yml",
-    "pika-labs-submission-api-openapi.yml"
+    "_original/pika-labs-openapi.yml"
   ],
   "outputs": [
     "pika-labs-cancel-api-openapi.yml",
@@ -16,11 +13,14 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "pika-labs-cancel-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "pika-labs-result-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "pika-labs-status-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "pika-labs-submission-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "pika-labs-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "pika-labs-cancel-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pika-labs-result-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pika-labs-status-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pika-labs-submission-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

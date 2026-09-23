@@ -1,33 +1,7 @@
 openapi: 3.2.0
 info:
-  title: Pika Labs via fal.ai Queue Cancel Submission API
-  description: 'Pika Labs does not publish a first-party REST API on its main domain.
-
-    Production REST access to Pika''s video generation models is provided
-
-    through the fal.ai inference platform''s standard Queue API.
-
-
-    Submit an inference request with POST /{model_id}, then poll
-
-    GET /{model_id}/requests/{request_id}/status (or stream it) until the
-
-    request completes, and fetch the result with
-
-    GET /{model_id}/requests/{request_id}. Authentication is a fal.ai API
-
-    key sent as `Authorization: Key $FAL_KEY`.
-
-
-    The {model_id} path component identifies a specific Pika model on fal.ai
-
-    (for example `fal-ai/pika`). Only the generic Queue API surface is
-
-    modeled here; see the fal.ai documentation under externalDocs for
-
-    model-specific input and output schemas.
-
-    '
+  title: Pika Labs via fal.ai Queue Submission API
+  description: Pika Labs does not publish a first-party REST API on its main domain.
   version: 1.0.0
   contact:
     name: fal.ai documentation
@@ -61,9 +35,7 @@ paths:
 
         Returns a request identifier along with URLs to check status, fetch
 
-        the result, and cancel the request.
-
-        '
+        the result, and cancel the request.'
       operationId: submitRequest
       parameters:
       - in: query
