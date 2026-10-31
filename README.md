@@ -1,4 +1,4 @@
-# Pika Labs (pika-labs)
+# Pika Labs
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,54 +66,130 @@
 
 Pika Labs is an AI video generation platform offering text-to-video, image-to-video, and video editing capabilities. As of May 2026 Pika does not publish a first-party REST API on its main domain; production API access is provided through partner aggregators (notably fal.ai) which host hosted endpoints for Pika models.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/pika-labs/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/pika-labs/refs/heads/main/apis.yml)
+**Areas:** Artificial Intelligence · Video Generation · Multi-Modal · Generative
 
-## Tags
+## Pika Labs on APIs.io
 
-- AI
-- Video Generation
-- Text-to-Video
-- Multimodal
-- Generative
+Everything profiled for Pika Labs is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/pika-labs/](https://apis.io/providers/pika-labs/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (5)
 
-- **Created:** 2026-05-08
-- **Modified:** 2026-05-08
+- [Pika via fal.ai](https://apis.io/apis/pika-labs/fal/) — Pika's video generation models are exposed through the fal.ai inference platform. Use fal.ai's standard REST submission + polling API to access Pika models.
+- [Pika Labs Cancel API](https://apis.io/apis/pika-labs/pika-labs-cancel-api/) — Cancel an in-flight request.
+- [Pika Labs Result API](https://apis.io/apis/pika-labs/pika-labs-result-api/) — Retrieve the result of a completed request.
+- [Pika Labs Status API](https://apis.io/apis/pika-labs/pika-labs-status-api/) — Inspect request status.
+- [Pika Labs Submission API](https://apis.io/apis/pika-labs/pika-labs-submission-api/) — Submit inference requests.
 
-## APIs
+### Published properties
 
-### Pika via fal.ai
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Pika's video generation models are exposed through the fal.ai inference platform. Use fal.ai's standard REST submission + polling API to access Pika models.
+#### Agentic access (1)
 
-- **Human URL:** [https://fal.ai/models?keywords=pika](https://fal.ai/models?keywords=pika)
-- **Base URL:** `https://queue.fal.run`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Pika Labs Agentic Access](https://apis.io/agentic-access/pika-labs/pika-labs-agentic-access/)
 
-- Video Generation
-- Aggregator
-- fal.ai
+#### JSON-LD (1)
 
-#### Properties
+Linked-data contexts for the provider's vocabulary.
 
-- [Documentation](https://fal.ai/models?keywords=pika)
-- [Provider Website](https://pika.art/)
-- [Postman Collection](collections/pika-labs.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/pika-labs.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Pika Labs Context](https://apis.io/jsonld/pika-labs/pika-labs-context/)
 
-## Common Properties
+#### Collections (5)
 
-- [GitHub Organization](https://github.com/Pika-Labs)
-- [LinkedIn](https://www.linkedin.com/company/pika-labs)
+Postman and Open Collection request collections.
+
+- [Pika Labs via fal.ai Queue API](https://apis.io/collections/pika-labs/open-pika-labs/)
+- [Pika Labs via fal.ai Queue Cancel API](https://apis.io/collections/pika-labs/open-pika-labs-cancel-api/)
+- [Pika Labs via fal.ai Queue Cancel Result API](https://apis.io/collections/pika-labs/open-pika-labs-result-api/)
+- [Pika Labs via fal.ai Queue Cancel Status API](https://apis.io/collections/pika-labs/open-pika-labs-status-api/)
+- [Pika Labs via fal.ai Queue Cancel Submission API](https://apis.io/collections/pika-labs/open-pika-labs-submission-api/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Pika Labs Authentication](https://apis.io/security/pika-labs/pika-labs-authentication/)
+- [Pika Labs Domain Security](https://apis.io/security/pika-labs/pika-labs-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Pika Labs Plans Pricing](https://apis.io/plans/pika-labs/pika-labs-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Pika Labs Rate Limits](https://apis.io/rate-limits/pika-labs/pika-labs-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Pika Labs Finops](https://apis.io/finops/pika-labs/pika-labs-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://pika.art/)
 - [Documentation](https://fal.ai/models?keywords=pika)
-- [Plans](plans/pika-labs-plans-pricing.yml)
-- [Rate Limits](rate-limits/pika-labs-rate-limits.yml)
-- [Fin Ops](finops/pika-labs-finops.yml)
+- [Pricing](https://pika.art/pricing)
+- [Blog](https://pika.art/blog)
+- [GitHub](https://github.com/Pika-Labs)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 29.1** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 55.5 |
+| Contract governance | 13.6 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 15.8 |
+
+**Agent readiness 19.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 15.5** — AI & Biometrics
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/pika-labs/](https://apis.io/providers/pika-labs/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Pika Labs: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/pika-labs/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
